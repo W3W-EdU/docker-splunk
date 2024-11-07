@@ -19,9 +19,13 @@ set -e
 setup() {
 	# Check if the user accepted the license
 	if [[ "$SPLUNK_START_ARGS" != *"--accept-license"* ]]; then
-		printf "License not accepted, please ensure the environment variable SPLUNK_START_ARGS contains the '--accept-license' flag\n"
-		printf "For example: docker run -e SPLUNK_START_ARGS=--accept-license splunk/universalforwarder\n\n"
-		printf "For additional information and examples, see the help: docker run -it splunk/universalforwarder help\n"
+		printf "License not accepted, please adjust SPLUNK_START_ARGS to indicate you have accepted the license.\n"
+		printf "The license you are accepting is the Splunk General Terms, available here: https://www.splunk.com/en_us/legal/splunk-general-terms.html\n"
+		printf "Unless you have jointly executed with Splunk a negotiated version of these General Terms that explicitly supersedes this agreement, by accessing or using Splunk software, you are agreeing to the Splunk General Terms.\n"
+		printf "Please read and make sure you agree to the Splunk General Terms before you access or use this software.\n"
+		printf "Only once you've done so should you include the '--accept-license' flag to indicate your acceptance of the Splunk General Terms and launch this software.\n"
+		printf "For example: docker run -e SPLUNK_START_ARGS=--accept-license -e SPLUNK_PASSWORD splunk/splunk\n\n"
+		printf "For additional information and examples, see the help: docker run -it splunk/splunk help\n"
 		exit 1
 	fi
 }
